@@ -93,15 +93,75 @@
         <div class="container py-3">
             <div class="row justify-content-start">
                 <div class="col-lg-8 text-center text-lg-start">
-                    <h1 class="display-1 text-uppercase text-white mb-2">Competition</h1>
-                    <h1 class="text-uppercase text-white">자세한 설명</h1>
+                    <h1 class="display-1 text-uppercase text-white mb-2">Active Competition</h1>
                 </div>
             </div>
         </div>
     </div>
     <!-- Hero End -->
 
-    <!-- 여기부터 작성 -->
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase mb-3">대회 개최</h2>
+                <p class="text-muted">Donga-lang을 활용한 다양한 설계도 대회 개최</p>
+                <a href="held.html" class="btn btn-primary btn-xl text-uppercase mt-4">대회 신청하기</a>
+            </div>
+        </div>
+    </section>
+        
+
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading text-uppercase mb-3">대회 목록</h2>
+    
+                <!-- 등록된 대회 리스트에서 각각의 대회를 불러와서 출력 -->
+                <div id="competitionList" class="row mt-4">
+                    <!-- 대회 1 -->
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <img src="대회1이미지URL" class="card-img-top" alt="대회1 이미지">
+                            <div class="card-body">
+                                <h5 class="card-title">대회 1 이름</h5>
+                                <p class="card-text">대회 1 설명</p>
+                                <p class="card-text"><strong>상금:</strong> 상금1</p>
+                                <p class="card-text"><strong>날짜:</strong> 날짜1</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- 대회 2 -->
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <img src="대회2이미지URL" class="card-img-top" alt="대회2 이미지">
+                            <div class="card-body">
+                                <h5 class="card-title">대회 2 이름</h5>
+                                <p class="card-text">대회 2 설명</p>
+                                <p class="card-text"><strong>상금:</strong> 상금2</p>
+                                <p class="card-text"><strong>날짜:</strong> 날짜2</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- 등록된 대회가 없을 때의 표시 -->
+                    <div id="noCompetitionMessage" class="col-lg-12 text-center">
+                        <p>등록된 대회가 없습니다.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>    
+
+
+<!-- 등록된 대회가 없을때 noCompetitionMessage.style.display = 'block' -->
+<script>
+    var noCompetitionMessage = document.getElementById('noCompetitionMessage');
+    noCompetitionMessage.style.display = 'none';
+</script>
+
+
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
