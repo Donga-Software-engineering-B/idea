@@ -49,7 +49,7 @@
                 <div class="d-inline-flex align-items-center justify-content-center">
                     <a href="index.html" class="navbar-brand">
                         <img src="img/dongalogo.png" class="img-fluid" alt="Logo" class="img-fluid">
-			            <h1 class="logo-text">DongA lang</h1>
+                     <h1 class="logo-text">DongA lang</h1>
                     </a>
                 </div>
             </div>
@@ -119,14 +119,51 @@
                 </div>
             </form>
 
+            <!-- 알림 메시지 -->
+            <div id="alertMessage" class="alert alert-danger d-none" role="alert">
+                대회 이름, 상금, 설명, 날짜 중 입력하지 않은 요소가 있습니다.
+            </div>
+
             <!-- 등록 및 취소 버튼 -->
             <div class="mt-4">
-                <a href="competition.html" class="btn btn-secondary btn-xl text-uppercase ms-2">등록</a>
+                <button onclick="submitForm()" class="btn btn-secondary btn-xl text-uppercase ms-2">등록</button>
                 <a href="competition.html" class="btn btn-secondary btn-xl text-uppercase ms-2">취소</a>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    function submitForm() {
+        var competitionName = document.getElementById('competitionName').value.trim();
+        var prize = document.getElementById('prize').value.trim();
+        var date = document.getElementById('date').value.trim();
+        var description = document.getElementById('description').value.trim();
+
+        if (competitionName === "" || prize === "" || date === "" || description === "") {
+            // 필수 필드 중 하나라도 비어 있으면 알림 메시지를 표시하고 폼을 제출하지 않음
+            document.getElementById('alertMessage').classList.remove('d-none');
+        } else {
+            // 모든 필드가 채워져 있으면 알림 메시지를 감추고 폼을 제출
+            document.getElementById('alertMessage').classList.add('d-none');
+            
+            // Display success message
+            alert('등록되었습니다.');
+
+            // Redirect to competition.html
+            window.location.href = 'competition.html';
+        }
+    }
+</script>
+
+
+
+<script>
+    // 대회 이름 입력란에 포커스를 설정
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('competitionName').focus();
+    });
+</script>
 
 
 
@@ -177,9 +214,9 @@
        .logo-text {
            display: inline-block; /* 추가된 부분 */
            margin-left: 10px;
-    	   color: #ffffff;
-    	   font-size: 40px;
-	   line-height : 1;
+          color: #ffffff;
+          font-size: 40px;
+      line-height : 1;
        }
     </style>
 </body>
