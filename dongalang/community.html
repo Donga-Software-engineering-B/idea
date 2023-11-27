@@ -177,36 +177,32 @@
                 <th style="width: 5%">번호</th>
                 <th style="width: 65%">제목</th>
                 <th style="width: 10%">작성자</th>
-                <th style="width: 10%">조회수</th>
-                <th style="width: 5%">작성일</th>
-                <th style="width: 5%">-</th>
+                <th style="width: 5%">조회수</th>
+                <th style="width: 10%">작성일</th>
               </tr>
             </thead>
             <tbody>
               <!-- 게시글 내용 -->
               <tr>
                 <td>1</td>
-                <td>제목 입력</td>
-                <td>작성자 입력</td>
-                <td>150</td>
-                <td>2020/11/13</td>
-                <td>-</td>
+                <td class="board-title">제목 입력</td>
+                <td class="board-name">작성자 입력</td>
+                <td class="board-views">150</td>
+                <td class="board-date">2020/11/13</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>제목 입력</td>
-                <td>작성자 입력</td>
-                <td>229</td>
-                <td>2022/06/27</td>
-                <td>-</td>
+                <td class="board-title">제목 입력</td>
+                <td class="board-name">작성자 입력</td>
+                <td class="board-views">229</td>
+                <td class="board-date">2022/06/27</td>                
               </tr>
               <tr>
                 <td>3</td>
-                <td>제목 입력</td>
-                <td>작성자 입력</td>
-                <td>127</td>
-                <td>2023/01/25</td>
-                <td>-</td>
+                <td class="board-title">제목 입력</td>
+                <td class="board-name">작성자 입력</td>
+                <td class="board-views">127</td>
+                <td class="board-date">2023/01/25</td>
               </tr>
             </tbody>
           </table>
@@ -271,7 +267,40 @@
         </div>
       </div>
     </div>
-
+    <script>
+      window.onload = function(){
+        const url = 'https://donga-software-engineering-b-default-rtdb.firebaseio.com/Community.json'
+        var community = []
+        // Fetch API를 사용하여 GET 요청 보내기
+        fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Retrieved data:', data);
+          var title_list =  document.querySelectorAll('.board-title')
+          Array.from(title_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Title;
+          });
+          var name_list = document.querySelectorAll('.board-name')
+          Array.from(name_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Writer;
+          });
+          var view_list = document.querySelectorAll('.board-views')
+          Array.from(view_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Views;
+          });
+          var date_list = document.querySelectorAll('.board-date')
+          Array.from(date_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Date;
+          }); 
+        })
+        .catch(error => console.error('Error:', error));
+      }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
