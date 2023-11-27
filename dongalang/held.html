@@ -113,7 +113,7 @@
           <h2 class="section-heading text-uppercase mb-3">대회 등록</h2>
           <form
             id="competitionForm"
-            action="held.html"
+            action="competition.html"
             method="post"
             enctype="multipart/form-data"
           >
@@ -159,26 +159,58 @@
             </div>
             <div class="mb-3">
               <label for="image" class="form-label">대회 이미지</label>
-              <input type="file" class="form-control" id="image" name="image" />
+              <input type="file" class="form-control" id="image" name="image" value="None"/>
+            </div>
+            <div class="mt-4">
+              <input type="submit" class="btn btn-secondary btn-xl text-uppercase ms-2">
+  
+              <input type="reset" value="취소" class="btn btn-secondary btn-xl text-uppercase ms-2">
             </div>
           </form>
-
-          <!-- 등록 및 취소 버튼 -->
-          <div class="mt-4">
-            <a
-              href="competition.html"
-              class="btn btn-secondary btn-xl text-uppercase ms-2"
-              >등록</a
-            >
-            <a
-              href="competition.html"
-              class="btn btn-secondary btn-xl text-uppercase ms-2"
-              >취소</a
-            >
-          </div>
+          
         </div>
       </div>
     </section>
+    <script>
+      window.onload = function() {
+        document.getElementById('competitionForm').addEventListener('submit', function(event) {
+          event.preventDefault()
+          // 폼 데이터 수집
+          var competitionData = {
+            Name: document.getElementById('competitionName').value,
+            Info: {
+              contents: document.getElementById('description').value,
+              deadline: document.getElementById('date').value,
+              reward: document.getElementById('prize').value
+            }
+          };
+    
+          // Firebase Realtime Database의 URL
+          var databaseUrl = 'https://donga-software-engineering-b-default-rtdb.firebaseio.com/Competition/8.json';
+    
+          // Fetch API를 사용하여 데이터를 Firebase에 PUT 요청으로 전송
+          fetch(databaseUrl, {
+            method: 'PUT', // 'POST' 대신 'PUT'을 사용
+            body: JSON.stringify(competitionData),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Data successfully saved:', data);
+            window.history.back()
+            // 데이터 저장 후 추가 작업 수행
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+          
+        });
+      }
+    </script>
+    
+
 
     <!-- Firebase JavaScript SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
