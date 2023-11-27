@@ -39,6 +39,7 @@
   </head>
 
   <body>
+      
     <!-- Topbar Start -->
     <div class="container-fluid px-0 d-none d-lg-block">
       <div class="row gx-0">
@@ -170,7 +171,33 @@
       <h6 class="m-0 font-weight-bold text-primary">대회 목록</h6>
       <br /><br />
     </div>
-
+    <script>
+      window.onload = function(){
+        const url = 'https://donga-software-engineering-b-default-rtdb.firebaseio.com/Competition.json'
+        var competition = []
+        // Fetch API를 사용하여 GET 요청 보내기
+        fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Retrieved data:', data);
+          var title_list =  document.querySelectorAll('.card-title')
+          Array.from(title_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Name;
+          });
+          var info_list = document.querySelectorAll('.card-text')
+          Array.from(info_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Info.contents;
+          }); 
+        })
+        .catch(error => console.error('Error:', error));
+      }
+      
+    </script>
     <div class="container-fluid py-5 mb-5">
       <div class="container py-5">
         <div class="row justify-content-center">
@@ -183,7 +210,7 @@
               <!-- 대회 1 -->
               <div class="card mb-3">
                 <div class="card-body">
-                  <h5 class="card-title">대회 1</h5>
+                  <h5 class="card-title"></h5>
                   <p class="card-text">대회 1에 대한 설명 및 정보...</p>
                 </div>
               </div>
