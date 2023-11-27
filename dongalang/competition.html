@@ -132,7 +132,41 @@
         </div>
       </div>
     </section>
-
+    <script>
+      window.onload = function(){
+        const url = 'https://donga-software-engineering-b-default-rtdb.firebaseio.com/Competition.json'
+        var competition = []
+        // Fetch API를 사용하여 GET 요청 보내기
+        fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Retrieved data:', data);
+          var title_list =  document.querySelectorAll('.card-title')
+          Array.from(title_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Name;
+          });
+          var info_list = document.querySelectorAll('.card-text1')
+          Array.from(info_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Info.contents;
+          }); 
+          var info_list = document.querySelectorAll('.card-text2')
+          Array.from(info_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Info.reward;
+          }); 
+          var info_list = document.querySelectorAll('.card-text3')
+          Array.from(info_list).forEach(function(item, index) {
+            item.innerHTML = data[index].Info.deadline;
+          }); 
+        })
+        .catch(error => console.error('Error:', error));
+      }
+      
+    </script>
     <section class="container my-5">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -144,15 +178,17 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <img
-                  src="대회1이미지URL"
+                  src="./img/trophy.jpg"
+                  width="150px"
+                  height="200px"
                   class="card-img-top"
                   alt="대회1 이미지"
                 />
                 <div class="card-body">
                   <h5 class="card-title">대회 1 이름</h5>
-                  <p class="card-text">대회 1 설명</p>
-                  <p class="card-text"><strong>상금:</strong> 상금1</p>
-                  <p class="card-text"><strong>날짜:</strong> 날짜1</p>
+                  <p class="card-text1">대회 1 설명</p>
+                  <p class="card-text2"><strong>상금:</strong> 상금1</p>
+                  <p class="card-text3"><strong>날짜:</strong> 날짜1</p>
                 </div>
               </div>
             </div>
@@ -161,15 +197,17 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <img
-                  src="대회2이미지URL"
+                  src="./img/trophy.jpg"
+                  width="150px"
+                  height="200px"
                   class="card-img-top"
                   alt="대회2 이미지"
                 />
                 <div class="card-body">
                   <h5 class="card-title">대회 2 이름</h5>
-                  <p class="card-text">대회 2 설명</p>
-                  <p class="card-text"><strong>상금:</strong> 상금2</p>
-                  <p class="card-text"><strong>날짜:</strong> 날짜2</p>
+                  <p class="card-text1">대회 2 설명</p>
+                  <p class="card-text2"><strong>상금:</strong> 상금2</p>
+                  <p class="card-text3"><strong>날짜:</strong> 날짜2</p>
                 </div>
               </div>
             </div>
@@ -177,16 +215,18 @@
             <!-- 대회 3 -->
             <div class="col-lg-4">
               <div class="card mb-4">
-                <img
-                  src="대회2이미지URL"
+                <img  
+                src="./img/trophy.jpg"
+                width="150px"
+                height="200px"
                   class="card-img-top"
                   alt="대회3 이미지"
                 />
                 <div class="card-body">
                   <h5 class="card-title">대회 3 이름</h5>
-                  <p class="card-text">대회 3 설명</p>
-                  <p class="card-text"><strong>상금:</strong> 상금3</p>
-                  <p class="card-text"><strong>날짜:</strong> 날짜3</p>
+                  <p class="card-text1">대회 3 설명</p>
+                  <p class="card-text2"><strong>상금:</strong> 상금3</p>
+                  <p class="card-text3"><strong>날짜:</strong> 날짜3</p>
                 </div>
               </div>
             </div>
